@@ -1,0 +1,176 @@
+body{
+    padding: 0;
+    margin: 0 auto;
+    max-width: 600px;
+    min-width: 230px;
+    font-size: 14pt;
+    font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
+
+}
+
+.container{
+    margin-top: 200px;
+    position: relative;
+}
+
+.date{
+
+}
+
+.time{
+
+}
+
+.input-box{
+
+}
+
+.input-todo{
+    position: relative;
+    padding: 20px 20px 20px 80px;
+    margin: 0;
+    width: 100%;
+
+    font-size: 20px;
+
+    letter-spacing: 1px;
+    color: #888;
+
+    box-sizing: border-box;
+    /*border-radius: 3px 3px 0 0;*/
+}
+
+.input-todo:focus{
+    /*outline: none;*/
+    outline-color: #010101;
+}
+
+.input-label{
+    font-size: 20px;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: #888888;
+    position: absolute;
+    pointer-events: none;
+    text-transform: uppercase;
+    left: 60px;
+    top: 22px;
+    transition: all .2s ease;
+}
+
+/*JS control*/
+.input-label-focused{
+    font-size: 18px;
+    font-style: italic;
+    letter-spacing: 10px;
+    top: -15px;
+    left: 67px;
+    margin-top: 0;
+    padding: 2px 5px 1px;
+    background-color: #fff;
+}
+
+.item-box{
+
+}
+
+.item-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tool-bar{
+    text-align: center;
+
+    padding: 15px 10px;
+    width: 100%;
+    height: 45px;
+
+    font-style: italic;
+    font-size: 12px;
+    font-weight: normal;
+    color: #888888;
+
+    box-sizing: border-box;
+    border: 1px solid rgba(10, 10, 10, 0.3);
+    border-radius: 0 0 3px 3px;
+
+}
+
+.todo-count{
+    float: left;
+    text-align: left;
+    /*font-size: 18px;*/
+    font-weight: bold;
+}
+
+.tool-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    right: 100px;
+    position: absolute;
+}
+
+.tool-list li{
+    display: inline;
+    margin: 0 10px;
+}
+
+.tool-list a{
+    border: solid 1px transparent;
+    border-radius: 2px;
+
+    padding: 3px 7px;
+}
+
+.tool-list a:hover{
+    border-color: #888888;
+}
+
+.selected{
+
+}
+
+.all{
+
+}
+
+.ongoing{
+
+}
+
+.completed{
+
+}
+
+.clear-complete{
+    float: right;
+    position: relative;
+    margin: 0;
+    padding: 3px 7px;
+    background: none;
+    border: solid 1px transparent;
+    border-radius: 2px;
+
+    font-style: italic;
+    font-size: 12px;
+    font-weight: normal;
+    color: #888888;
+    line-height: 8px;
+    cursor: pointer;
+}
+
+.clear-complete:hover{
+    /*border-color: rgba(255, 0, 0, 10);*/
+    color: rgba(255, 0, 0, 0.5);
+    text-decoration-line: underline;
+}
+
+.clear-complete:active{
+    border: none;
+}
+
+
