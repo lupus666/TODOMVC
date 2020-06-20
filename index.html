@@ -8,28 +8,20 @@
 </head>
 <body>
     <div class="container">
-        <div class="date">
-
-        </div>
-        <div class="time">
-
-        </div>
-        <div class="input-box">
-            <input class="input-todo" type="text" placeholder=" ">
-            <label class="input-label">
-                <span>
-                    What need to be done
+        <div class="time-box">
+            <div class="date">
+                <span class="day"></span>
+                <span class="month-year">
+                    <span class="month"></span><br/>
+                    <span class="year"></span>
                 </span>
-            </label>
+            </div>
+            <div class="time">
+                <span class="clock"></span>
+            </div>
         </div>
-        <div class="item-box">
-            <ul class="item-list">
-<!--                <li>-->
-<!--                    <div>-->
 
-<!--                    </div>-->
-<!--                </li>-->
-            </ul>
+        <div class="tool-box">
             <div class="tool-bar">
                 <span class="todo-count"> 0  todo</span>
                 <ul class="tool-list">
@@ -37,13 +29,43 @@
                         <a class="all selected">ALL</a>
                     </li>
                     <li>
-                        <a class="ongoing selected">ONGOING</a>
+                        <a class="ongoing">ONGOING</a>
                     </li>
                     <li>
-                        <a class="completed selected">COMPLETED</a>
+                        <a class="completed">COMPLETED</a>
                     </li>
                 </ul>
                 <a class="clear-complete">CLEAR COMPLETED</a>
+            </div>
+        </div>
+
+        <div class="input-box">
+            <input class="toggle-all" type="checkbox">
+            <input class="input-todo" type="text" placeholder=" ">
+            <label class="input-label">
+                <span>
+                    What need to be done
+                </span>
+            </label>
+
+        </div>
+<!--        <label class="deadline">Deadline</label>-->
+        <input class="input-deadline" type="date" value="2015-09-24"/>
+
+        <div class="item-box">
+            <div class="box none" id="template">
+                <span class="item-deadline">2020-6-20</span>
+                <div class="item-content">
+                    <ul class="item-list">
+                        <li class="item-info none" id="info-template">
+                           <div class="view">
+                               <input class="toggle" type="checkbox">
+                               <label class="todo-label">TODO</label>
+                               <button class="delete"></button>
+                           </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
