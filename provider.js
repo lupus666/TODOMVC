@@ -1,10 +1,16 @@
+/**
+ *
+ * @abstract: Reference to the code on github：https://github.com/luics/web-dev/tree/master/examples/data
+ *
+ */
+
 (function() {
-    var model = window.model;
-    var storage = window.localStorage;
+    let model = window.model;
+    let storage = window.localStorage;
 
     Object.assign(model, {
         init: function(callback) {
-            var data = storage.getItem(model.TOKEN);
+            let data = storage.getItem(model.TOKEN);
             try {
                 if (data) model.data = JSON.parse(data);
             }
