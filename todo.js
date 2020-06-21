@@ -15,6 +15,7 @@ function $All(str) {
 
 let months = ["Jan .", "Feb .", "Mar .", "Apr .", "May .", "Jun .", "Jul .", "Aug .", "Sept .", "Oct .", "Nov .", "Dec ."];
 let data = {"filter": "ALL"};
+let color = ["#fa4834", "#e98f36", "#afcd50", "#87a7d6"];
 
 function load() {
     updateTime();
@@ -101,9 +102,12 @@ function add(event) {
 
     addTodo(currentDate, text);
 
+    $(".toggle-all").checked = false;
+
     flush()
 }
 
+/* Add TodoItems*/
 function addTodo(currentDate, text, completed=false) {
     let template = document.getElementById(currentDate);
     let info = $("#info-template").cloneNode(true);
@@ -113,6 +117,13 @@ function addTodo(currentDate, text, completed=false) {
         template.id = currentDate;
         template.querySelector(".item-deadline").innerHTML = currentDate;
         template.classList.remove("none");
+    }
+
+    let left = diff(currentDate);
+    if (left <= 3){
+        template.querySelector(".item-deadline").style.backgroundColor = color[left];
+        info.querySelector(".toggle").classList.add("toggle" + left)
+
     }
 
     info.id = '';
@@ -145,11 +156,15 @@ function addTodo(currentDate, text, completed=false) {
             let count = parseInt($(".todo-count").innerHTML.split(' ')[1]);
             count -= 1;
             $(".todo-count").innerHTML = " " + count.toString() + "  todo";
+            if (count <= 0){
+                $(".toggle-all").checked = this.checked;
+            }
         } else {
             info.querySelector(".todo-label").classList.remove("label-completed");
             let count = parseInt($(".todo-count").innerHTML.split(' ')[1]);
             count += 1;
             $(".todo-count").innerHTML = " " + count.toString() + "  todo";
+            $(".toggle-all").checked = this.checked;
         }
 
         let index = findInParent(info.parentNode, info);
@@ -160,10 +175,43 @@ function addTodo(currentDate, text, completed=false) {
 
     });
 
-    info.querySelector(".todo-label").addEventListener("dbclick", function () {
+    /* Refer to the code of TodoMVC */
+    info.querySelector(".todo-label").addEventListener("dblclick", function () {
+        console.log("dblclick");
+        info.classList.add("editing");
 
+        let edit =document.createElement("input");
+        edit.setAttribute("type", "text");
+        edit.setAttribute("class", "edit");
+        edit.setAttribute("value", this.innerHTML);
 
-        flush()
+        function editFinish(){
+            info.removeChild(edit);
+            info.classList.remove("editing");
+        }
+
+        edit.addEventListener("blur", function () {
+            info.querySelector(".todo-label") .innerHTML = this.value;
+
+            flush();
+
+            editFinish();
+        });
+
+        edit.addEventListener("keyup", function (event) {
+            if (event.key === "Enter"){
+                info.querySelector(".todo-label") .innerHTML = this.value;
+
+                flush();
+                editFinish();
+
+            } else if (event.key === "Esc"){
+                editFinish();
+            }
+        }, false);
+
+        info.appendChild(edit);
+        edit.focus()
     });
 
 
@@ -313,6 +361,8 @@ function clear() {
         }
     }
 
+    $(".toggle-all").checked = false;
+
     flush();
 }
 
@@ -321,6 +371,7 @@ function flush() {
     window.localStorage.setItem("TODO", JSON.stringify(data))
 }
 
+/* Init With LocalStorage */
 function init() {
     if(window.localStorage.getItem("TODO")){
         data = JSON.parse(window.localStorage.getItem("TODO"));
@@ -332,21 +383,28 @@ function init() {
 
         $("." + filter.toLowerCase()).classList.add("selected");
 
+        let all = true;
         for (let dataKey in data) {
             if (dataKey !== "filter"){
                 let list = data[dataKey];
                 let length = list[0].length;
                 for (let i = 0; i < length; ++i){
                     addTodo(dataKey, list[0][i], list[1][i]);
+                    if (all){
+                        all = list[1][i]
+                    }
                 }
             }
         }
+
+        $(".toggle-all").checked = all;
 
         update()
     }
 
 }
 
+/* Return Index Of the child in parent  */
 function findInParent(parent, child) {
     let childrenList = parent.children;
     let i = 0;
@@ -357,4 +415,14 @@ function findInParent(parent, child) {
     }
 
     return i >= parent.childElementCount ? -1 : (parent.childElementCount - i - 2);
+}
+
+/* Calculate Day */
+function diff(date) {
+    let deadline = new Date(Date.parse(date));
+    let today = new Date();
+    deadline = deadline.getTime();
+    today = today.getTime();
+
+    return parseInt((deadline - today) / 1000 / 3600 / 24);
 }
