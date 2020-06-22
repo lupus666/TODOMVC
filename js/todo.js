@@ -214,6 +214,17 @@ function addTodo(currentDate, text, completed=false) {
         edit.focus()
     });
 
+    // info.setAttribute("draggable", true);
+    // info.addEventListener("dragstart", dragHandler.drag);
+    // info.addEventListener("dragenter", dragHandler.dragenter);
+    // info.addEventListener("dragover", dragHandler.dragover);
+    // info.addEventListener("dragleave", dragHandler.dragleave);
+    // info.addEventListener("drop", dragHandler.drop);
+
+    info.addEventListener("mousedown", dragHandler.start, false);
+    // info.addEventListener("mousemove", dragHandler.move);
+    // info.addEventListener("mouseup", dragHandler.end);
+
 
     info.classList.remove("none");
 
@@ -426,3 +437,107 @@ function diff(date) {
 
     return parseInt((deadline - today) / 1000 / 3600 / 24);
 }
+
+// dragHandler = {
+//     drag: function (event) {
+//         // event.dataTransfer.setData("node", this);
+//         console.log(this);
+//         // console.log(typeof event.dataTransfer.getData("node"));
+//         event.dataTransfer.effectAllowed = "move";
+//         // event.dataTransfer.dropEffect = "move";
+//     },
+//     dragenter: function (event){
+//         event.preventDefault();
+//         console.log("dragenter");
+//
+//     },
+//     dragover: function (event){
+//         event.preventDefault();
+//         console.log("dragover");
+//
+//     },
+//     dragleave: function (event){
+//         console.log("dragleave");
+//
+//         event.preventDefault();
+//
+//     },
+//     drop: function (event) {
+//         event.preventDefault();
+//         console.log(this);
+//         let data = event.dataTransfer.getData("node");
+//         console.log(data);
+//         // let node = document.createElement(data);
+//         this.parentNode.insertBefore(data, this)
+//     },
+// };
+let posX;
+let poxY;
+let drag;
+let dragObj;
+let originX;
+let originY;
+
+dragHandler = {
+    start: function(event) {
+        drag = true;
+        posX = event.x;
+        poxY = event.y;
+
+        originX = parseFloat(this.style.left || 0);
+        originY = parseFloat(this.style.top || 0);
+
+        dragObj = this;
+        this.style.zIndex = "3";
+        // console.log(posX, poxY);
+        this.addEventListener("mousemove", dragHandler.move, false);
+        this.addEventListener("mouseup", dragHandler.end, false);
+        this.addEventListener("mouseleave", dragHandler.end, false);
+    },
+    move: function(event) {
+        if (drag){
+            // console.log(this);
+            let offsetX = event.x - posX;
+            let offsetY = event.y - poxY;
+            // console.log(this.left);
+            let left = parseFloat(this.style.left || 0) + offsetX;
+            let top = parseFloat(this.style.top || 0) + offsetY;
+
+            let eles = document.elementsFromPoint(event.x, event.y);
+            // for(let x of eles){
+            //     console.log(x)
+            // }
+            console.log(eles);
+
+            this.style.left = left + "px";
+            this.style.top = top + "px";
+
+            posX = event.x;
+            poxY = event.y;
+        }
+    },
+    end: function(event) {
+        drag = false;
+        this.style.zIndex = "2";
+        // console.log(ev.type);
+        // var style = box.style;
+        // style.backgroundColor = "#7BA3A8";
+        this.removeEventListener('mouseup', dragHandler.end, false);
+        this.removeEventListener('mousemove', dragHandler.move, false);
+
+        if (false){
+            this.querySelector(".delete").click();
+        }else{
+            this.style.left = originX + "px";
+            this.style.top = originY + "px";
+        }
+    },
+    cancel: function(ev) {
+        console.log(ev.type);
+        var style = box.style;
+        style.backgroundColor = "#7BA3A8";
+    },
+    leave: function (event) {
+
+    }
+};

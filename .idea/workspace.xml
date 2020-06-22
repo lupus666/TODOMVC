@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="6cfb6800-6f75-4c99-8cb5-6805f02a7a43" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo.js" beforeDir="false" afterPath="$PROJECT_DIR$/todo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/icon/circle_3.svg" beforeDir="false" afterPath="$PROJECT_DIR$/icon/circle_3.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/provider.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/provider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/todo.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +44,12 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\learning\3_2\脚本程序设计\project\TODOMVC\css" />
+      <recent name="D:\learning\3_2\脚本程序设计\project\TODOMVC\js" />
+    </key>
+  </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
       <list>
@@ -64,7 +74,11 @@
       <updated>1592461068405</updated>
       <workItem from="1592461079268" duration="2042000" />
       <workItem from="1592618049005" duration="62532000" />
-      <workItem from="1592723511161" duration="4637000" />
+      <workItem from="1592723511161" duration="4782000" />
+      <workItem from="1592728362825" duration="192000" />
+      <workItem from="1592733632149" duration="1021000" />
+      <workItem from="1592745681605" duration="1977000" />
+      <workItem from="1592794269369" duration="11608000" />
     </task>
     <servers />
   </component>
@@ -76,9 +90,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="260" y="279" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1592619097466" />
-    <state x="1103" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1592727188273">
+    <state x="1103" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1592807243212">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1103" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1592727188273" />
+    <state x="1103" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1592807243212" />
   </component>
 </project>
