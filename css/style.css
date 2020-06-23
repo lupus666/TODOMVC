@@ -441,7 +441,7 @@ li{
 
 .toggle2:checked{
     /*display: none;*/
-    content: url("icon/circle_3.svg");
+    content: url("../icon/circle_3.svg");
     /*overflow: hidden;*/
     /*-webkit-filter: drop-shadow(0 0 darkred) ;*/
     /*filter: drop-shadow(0 0 darkred);*/
