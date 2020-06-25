@@ -21,6 +21,18 @@ function load() {
     updateTime();
     setInterval(updateTime, 1000);
 
+    $(".change-style").addEventListener("click", function () {
+        console.log("click");
+        let link = document.head.querySelector("link");
+        console.log(link);
+        let href = link.href;
+        if (href.search("/style.css") > 0){
+            link.href = "./css/style-dark.css";
+        }else{
+            link.href = "./css/style.css";
+        }
+    });
+
     $("input.input-todo").addEventListener("focus", onFocus);
     $("input.input-todo").addEventListener("blur", onBlur);
     $(".input-deadline").valueAsDate = new Date();
@@ -41,6 +53,7 @@ function load() {
     viewport.name = 'viewport';
     viewport.content = 'initial-scale=2,maximum-scale=1,user-scalable=no, width=device-width';
     document.head.appendChild(viewport);
+
 }
 
 /* Update Time */

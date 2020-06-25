@@ -2,6 +2,8 @@
     -moz-user-select:none;
     -webkit-user-select:none;
     user-select:none;
+    background-color: #010101;
+    color: #eeeeee;
 }
 
 body{
@@ -12,6 +14,7 @@ body{
     font-size: 14pt;
     font-family: Monaco, Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
 }
+
 
 .none{
     display: none;
@@ -42,7 +45,7 @@ li{
     margin-top: 40px;
     margin-left: 20px;
     padding: 0;
-    background: url("../icon/style.png") no-repeat center;
+    background: url("../icon/style-fill.png") no-repeat center;
     background-size: 100%;
 }
 
@@ -56,7 +59,7 @@ li{
     float: left;
     /*font-weight: bold;*/
     font-size: 50px;
-    color: #333333;
+    color: #eeeeee;
     padding: 2px;
     margin: 2px;
 }
@@ -65,7 +68,7 @@ li{
     float: left;
     font-weight: bold;
     font-size: 20px;
-    color: grey;
+    color: #eeeeee;
     padding: 2px;
 }
 
@@ -73,7 +76,7 @@ li{
     float: left;
     font-weight: bold;
     font-size: 20px;
-    color: grey;
+    color: #eeeeee;
     padding: 2px;
 }
 
@@ -86,18 +89,20 @@ li{
 .clock{
     /*font-weight: bold;*/
     font-size: 50px;
-    color: #333333;
+    color: #eeeeee;
     padding: 2px;
 }
 
 .tool-box{
     margin-bottom: 10px;
     position: relative;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 0px 0px 0 rgba(255, 255, 255, 0.1);
 
 }
 
 .tool-bar{
+    /*background-color: #eeeeee;*/
+
     text-align: center;
     position: relative;
 
@@ -108,7 +113,7 @@ li{
     /*font-style: italic;*/
     font-size: 12px;
     /*font-weight: bold;*/
-    color: #888888;
+    color: #dddddd;
 
     box-sizing: border-box;
     /*border: 1px solid rgba(10, 10, 10, 0.3);*/
@@ -178,7 +183,7 @@ li{
     /*font-style: italic;*/
     font-size: 12px;
     font-weight: bold;
-    color: #888888;
+    color: #eeeeee;
     line-height: 8px;
     cursor: pointer;
 }
@@ -213,12 +218,12 @@ li{
     font-size: 14px;
 
     letter-spacing: 1px;
-    color: #888;
+    color: #eeeeee;
 
     border: none;
     box-sizing: border-box;
     /*border-radius: 3px 3px 0 0;*/
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 0px 0px 0 rgba(255, 255, 255, 0.1);
     /*box-shadow: #888888 2px 2px;*/
 }
 
@@ -242,7 +247,6 @@ li{
     font-size: 14px;
     /*font-style: italic;*/
     letter-spacing: 1px;
-    color: #888888;
     position: relative;
     pointer-events: none;
     text-transform: uppercase;
@@ -260,7 +264,7 @@ li{
     left: 60px;
     margin-top: 0;
     padding: 2px 5px 1px;
-    background-color: #fff;
+    background-color: black;
 }
 
 .input-deadline{
@@ -280,7 +284,7 @@ li{
     border: none;
     /*border-radius: 2px;*/
     /*box-sizing: border-box;*/
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 0px 0px 0 rgba(255, 255, 255, 0.1);
 
 }
 
@@ -295,7 +299,7 @@ li{
 
     content: "DEADLINE:";
     font-weight: normal;
-    color: black;
+    color: #eeeeee;
     /*font-size: 20px;*/
     /*color: #ffffff;*/
     /*background-color: #888888;*/
@@ -314,7 +318,7 @@ li{
 
     min-height: 100px;
 
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 0px 0px 0 rgba(255, 255, 255, 0.1);
 
     position: relative;
 }
@@ -359,7 +363,7 @@ li{
 
     border-radius: 2px;
     /*background: #e6e6e6;*/
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2), 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 0px 0px 0 rgba(255, 255, 255, 0.1);
     margin-bottom: 8px;
     margin-left: 10px;
     margin-right: 10px;
@@ -511,7 +515,7 @@ li{
     margin-left: 60px;
     /*margin-bottom: 30px;*/
     /*margin: 20px 0 20px 80px;*/
-    color: #888888;
+    color: #eeeeee;
     display: block;
     transition: color 0.4s;
 
