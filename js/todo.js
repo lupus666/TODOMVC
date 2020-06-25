@@ -19,7 +19,7 @@ let color = ["#fa4834", "#e98f36", "#afcd50", "#87a7d6"];
 
 function load() {
     updateTime();
-    setInterval(updateTime, 60000);
+    setInterval(updateTime, 1000);
 
     $("input.input-todo").addEventListener("focus", onFocus);
     $("input.input-todo").addEventListener("blur", onBlur);
@@ -35,7 +35,12 @@ function load() {
 
     $(".toggle-all").addEventListener("change", completeAll);
 
-    init()
+    init();
+
+    let viewport = document.createElement('meta');
+    viewport.name = 'viewport';
+    viewport.content = 'initial-scale=2,maximum-scale=1,user-scalable=no, width=device-width';
+    document.head.appendChild(viewport);
 }
 
 /* Update Time */
@@ -119,6 +124,7 @@ function addTodo(currentDate, text, completed=false) {
         template.classList.remove("none");
     }
 
+    template.addEventListener("touchstart", TouchHandler_box.start, false);
     let left = diff(currentDate) < 0 ? 0 : diff(currentDate);
     if (left <= 3){
         template.querySelector(".item-deadline").style.backgroundColor = color[left];
@@ -136,6 +142,10 @@ function addTodo(currentDate, text, completed=false) {
         data[currentDate][0].splice(index, 1);
         data[currentDate][1].splice(index, 1);
 
+        let count = parseInt($(".todo-count").innerHTML.split(' ')[1]);
+        count -= 1;
+        $(".todo-count").innerHTML = " " + count.toString() + "  todo";
+
         parent.removeChild(info);
         if (parent.childElementCount <= 1) {
             $(".item-box").removeChild(parent.parentNode.parentNode);
@@ -143,6 +153,43 @@ function addTodo(currentDate, text, completed=false) {
         }
 
         flush();
+    });
+
+    info.querySelector(".edit-button").addEventListener("click", function () {
+        info.classList.add("editing");
+
+        let edit =document.createElement("input");
+        edit.setAttribute("type", "text");
+        edit.setAttribute("class", "edit");
+        edit.setAttribute("value", this.parentNode.querySelector(".todo-label").innerHTML);
+
+        function editFinish(){
+            info.removeChild(edit);
+            info.classList.remove("editing");
+        }
+
+        edit.addEventListener("blur", function () {
+            info.querySelector(".todo-label") .innerHTML = this.value;
+
+            flush();
+
+            editFinish();
+        });
+
+        edit.addEventListener("keyup", function (event) {
+            if (event.key === "Enter"){
+                info.querySelector(".todo-label") .innerHTML = this.value;
+
+                flush();
+                editFinish();
+
+            } else if (event.key === "Esc"){
+                editFinish();
+            }
+        }, false);
+
+        info.appendChild(edit);
+        edit.focus()
     });
 
     if (completed){
@@ -216,7 +263,7 @@ function addTodo(currentDate, text, completed=false) {
 
 
 
-    info.addEventListener("mousedown", dragHandler.start, false);
+    // info.addEventListener("mousedown", dragHandler.start, false);
     info.addEventListener("touchstart", TouchHandler.start, false);
 
 
@@ -251,7 +298,7 @@ function update() {
                 }
             });
             break;
-        case "ONGOING":
+        case "ON":
             $All(".box").forEach(box => {
                 if(box.id !== "template"){
                     // box.classList.remove("none");
@@ -453,7 +500,9 @@ function getPosY (element){
 let posX;
 let posy;
 let drag;
+let drag_box;
 let dragObj;
+let dragObj_box;
 let originX;
 let originY;
 
@@ -568,6 +617,8 @@ dragHandler = {
 
 TouchHandler = {
     start: function(event) {
+        // console.log(event.type + "1");
+        event.stopPropagation();
         drag = true;
         posX = event.touches[0].clientX;
         posy = event.touches[0].clientY;
@@ -583,7 +634,7 @@ TouchHandler = {
     },
     move: function(event) {
         if (drag){
-            // console.log(this);
+            // console.log("move");
             let offsetX = event.touches[0].clientX - posX;
             let offsetY = event.touches[0].clientY - posy;
             // console.log(this.left);
@@ -593,7 +644,10 @@ TouchHandler = {
             let eles = document.elementsFromPoint(event.touches[0].clientX, event.touches[0].clientY);
             let diff = 0;
             for(let x of eles){
-                if (x.classList.contains("item-info") && x !== dragObj){
+                if (x.classList.contains("item-info") && x !== dragObj &&
+                    x.parentNode.parentNode.parentNode.id === dragObj.parentNode.parentNode.parentNode.id){
+                    console.log(x.parentNode.parentNode.parentNode.id);
+                    console.log(dragObj.parentNode.parentNode.parentNode.id);
                     let newY = getPosY(x);
                     if(newY + x.clientHeight / 2 <= event.touches[0].clientY && newY > originY){
                         diff = newY - originY;
@@ -656,11 +710,6 @@ TouchHandler = {
         drag = false;
         this.style.zIndex = "2";
 
-        this.removeEventListener('touchend', TouchHandler.end, false);
-        this.removeEventListener('touchmove', TouchHandler.move, false);
-        this.removeEventListener("touchcancel", TouchHandler.end, false);
-        dragObj = null;
-
         let eles = document.elementsFromPoint(posX, posy);
         let inside = false;
         for (let x of eles){
@@ -674,5 +723,128 @@ TouchHandler = {
         }else{
             this.querySelector(".delete").click();
         }
+
+
+        this.removeEventListener('touchend', TouchHandler.end, false);
+        this.removeEventListener('touchmove', TouchHandler.move, false);
+        this.removeEventListener("touchcancel", TouchHandler.end, false);
+        dragObj = null;
+
+
+    },
+};
+
+TouchHandler_box = {
+    start: function(event) {
+        // console.log(event.type + "2");
+        event.stopPropagation();
+        drag_box = true;
+        posX = event.touches[0].clientX;
+        posy = event.touches[0].clientY;
+
+        originY = getPosY(this);
+
+        dragObj_box = this;
+        this.style.zIndex = "3";
+        // console.log(posX, posy);
+        this.addEventListener("touchmove", TouchHandler_box.move, false);
+        this.addEventListener("touchend", TouchHandler_box.end, false);
+        this.addEventListener("touchcancel", TouchHandler_box.end, false);
+    },
+    move: function(event) {
+        if (drag_box){
+            // console.log("move");
+            let offsetX = event.touches[0].clientX - posX;
+            let offsetY = event.touches[0].clientY - posy;
+            // console.log(this.left);
+            let left = parseFloat(this.style.left || 0) + offsetX;
+            let top = parseFloat(this.style.top || 0) + offsetY;
+
+            let eles = document.elementsFromPoint(event.touches[0].clientX, event.touches[0].clientY);
+            let diff = 0;
+            for(let x of eles){
+                if (x.classList.contains("box") && x !== dragObj_box){
+                    let newY = getPosY(x);
+                    if(newY + x.clientHeight / 2 <= event.touches[0].clientY && newY > originY){
+                        diff = newY - originY;
+                        originY = newY;
+
+                        dragObj_box.parentNode.insertBefore(x, dragObj_box);
+
+                        /* Change in data */
+                        // let currentDate1 = x.parentNode.parentNode.parentNode.id;
+                        // let currentDate2 = dragObj.parentNode.parentNode.parentNode.id;
+                        // let index1 = findInParent(x.parentNode, x);
+                        // let index2 = findInParent(dragObj.parentNode, dragObj);
+                        // console.log(currentDate2, currentDate1, index2, index1);
+                        //
+                        // let msg = data[currentDate1][0][index1];
+                        // let completed = data[currentDate2][1][index1];
+                        //
+                        // data[currentDate1][0].splice(index1, 1);
+                        // data[currentDate1][1].splice(index1, 1);
+                        //
+                        // data[currentDate2][0].splice(index2, 0, msg);
+                        // data[currentDate2][1].splice(index2, 0, completed);
+
+                        break;
+                    }
+                    if(newY + x.clientHeight / 2 >= event.touches[0].clientY && newY < originY){
+                        diff = newY - originY;
+                        originY = newY;
+
+                        dragObj_box.parentNode.insertBefore(dragObj_box, x);
+
+                        // let currentDate2 = x.parentNode.parentNode.parentNode.id;
+                        // let currentDate1 = dragObj.parentNode.parentNode.parentNode.id;
+                        // let index2 = findInParent(x.parentNode, x);
+                        // let index1 = findInParent(dragObj.parentNode, dragObj);
+                        // console.log(currentDate2, currentDate1, index2, index1);
+                        // let msg = data[currentDate1][0][index1];
+                        // let completed = data[currentDate2][1][index1];
+                        //
+                        // data[currentDate1][0].splice(index1, 1);
+                        // data[currentDate1][1].splice(index1, 1);
+                        //
+                        // data[currentDate2][0].splice(index2, 0, msg);
+                        // data[currentDate2][1].splice(index2, 0, completed);
+                        break;
+                    }
+                }
+            }
+            // flush();
+
+            this.style.left = left + "px";
+            this.style.top = top - diff + "px";
+
+            posX = event.touches[0].clientX;
+            posy = event.touches[0].clientY;
+        }
+    },
+    end: function(event) {
+        console.log(event.type);
+        drag_box = false;
+        this.style.zIndex = "2";
+
+        let eles = document.elementsFromPoint(posX, posy);
+        let inside = true;
+        // for (let x of eles){
+        //     if (x.classList.contains("box")){
+        //         inside = true;
+        //     }
+        // }
+        if (inside){
+            this.style.top = "0";
+            this.style.left = "0";
+        }else{
+            // this.querySelector(".delete").click();
+        }
+
+
+        this.removeEventListener('touchend', TouchHandler_box.end, false);
+        this.removeEventListener('touchmove', TouchHandler_box.move, false);
+        this.removeEventListener("touchcancel", TouchHandler_box.end, false);
+        dragObj_box = null;
+
     },
 };

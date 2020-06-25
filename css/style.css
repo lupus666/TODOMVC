@@ -7,10 +7,10 @@
 body{
     padding: 0;
     margin: 0 auto;
-    max-width: 600px;
+    max-width: 500px;
     min-width: 230px;
     font-size: 14pt;
-    font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
+    font-family: Monaco, Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
 }
 
 .none{
@@ -22,7 +22,8 @@ li{
 
 .container{
     z-index: 2;
-
+    margin-left: 10px;
+    margin-right: 10px;
     margin-top: 50px;
     position: relative;
 }
@@ -77,7 +78,7 @@ li{
 }
 
 .tool-box{
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     position: relative;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
 
@@ -97,7 +98,7 @@ li{
     color: #888888;
 
     box-sizing: border-box;
-    border: 1px solid rgba(10, 10, 10, 0.3);
+    /*border: 1px solid rgba(10, 10, 10, 0.3);*/
     border-radius: 0 0 3px 3px;
 
 }
@@ -114,14 +115,14 @@ li{
     list-style: none;
     margin: 0;
     padding: 0;
-    left: 0;
-    right: 100px;
+    left: 100px;
+    right: 20px;
     position: absolute;
 }
 
 .tool-list li{
     display: inline;
-    margin: 0 10px;
+    /*margin: 0 5px;*/
     cursor: pointer;
 }
 
@@ -175,6 +176,13 @@ li{
     text-decoration-line: underline;
 }
 
+.clear-complete:visited{
+    font-size: 12px;
+    font-weight: bold;
+    color: #888888;
+    line-height: 8px;
+}
+
 .clear-complete:active{
     border: none;
 }
@@ -185,15 +193,16 @@ li{
 
 .input-todo, .edit{
     position: relative;
-    padding: 20px 20px 20px 80px;
+    padding: 12px 12px 12px 40px;
     margin: 0;
     width: 100%;
 
-    font-size: 20px;
+    font-size: 14px;
 
     letter-spacing: 1px;
     color: #888;
 
+    border: none;
     box-sizing: border-box;
     /*border-radius: 3px 3px 0 0;*/
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
@@ -201,13 +210,14 @@ li{
 }
 
 .edit{
-    height: 94px;
-    width: 480px;
+    /*height: 52px;*/
+    width: 100%;
 
-    margin-left: 80px;
-    padding: 30px 30px 30px 14px;
+    /*margin-left: 60px;*/
+    padding: 15px 15px 15px 14px;
     display: block;
-    font-size: 30px;
+    font-size: 20px;
+    box-sizing: border-box;
 }
 
 .input-todo:focus, .edit:focus{
@@ -216,25 +226,25 @@ li{
 }
 
 .input-label{
-    font-size: 20px;
-    font-style: italic;
+    font-size: 14px;
+    /*font-style: italic;*/
     letter-spacing: 1px;
     color: #888888;
     position: relative;
     pointer-events: none;
     text-transform: uppercase;
-    left: 60px;
-    top: -45px;
+    left: 45px;
+    top: -34px;
     transition: all .2s ease;
 }
 
 /*JS control*/
 .input-label-focused{
-    font-size: 18px;
-    font-style: italic;
-    letter-spacing: 10px;
-    top: -78px;
-    left: 67px;
+    font-size: 12px;
+    /*font-style: italic;*/
+    letter-spacing: 5px;
+    top: -55px;
+    left: 60px;
     margin-top: 0;
     padding: 2px 5px 1px;
     background-color: #fff;
@@ -247,13 +257,14 @@ li{
     margin: 0;
     width: auto;
 
-    font-size: 14px;
+    font-size: 10px;
     /*font-style: italic;*/
     font-family: inherit;
 
     letter-spacing: 1px;
     color: #888;
 
+    border: none;
     /*border-radius: 2px;*/
     /*box-sizing: border-box;*/
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
@@ -270,7 +281,8 @@ li{
     margin: 2px 5px 2px 2px;
 
     content: "DEADLINE:";
-    font-weight: bolder;
+    font-weight: normal;
+    color: black;
     /*font-size: 20px;*/
     /*color: #ffffff;*/
     /*background-color: #888888;*/
@@ -279,41 +291,43 @@ li{
 
 .item-box{
     width: 100%;
-    margin-top: 100px;
+    margin-top: 70px;
 }
 
 .box{
-    margin-bottom: 90px;
+    margin-bottom: 30px;
 
-    border-radius: 15px;
+    border-radius: 5px;
 
-    min-height: 200px;
+    min-height: 100px;
 
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
 
+    position: relative;
 }
 
 .item-deadline{
     position:relative;
-    top: -10px;
-    right: -40px;
+    top: -8px;
+    right: -15px;
 
-    padding: 10px 20px;
+    padding: 5px 15px;
 
-    font-size: 24px;
+    font-size: 20px;
+    font-family: Monaco, sans-serif;
     /*font-weight: bold;*/
-    letter-spacing: 2px;
+    /*letter-spacing: 2px;*/
     color: white;
 
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #888888;
 }
 
 .item-content{
     position: relative;
     /*min-height: inherit;*/
-    padding: 20px;
-    margin-top: 20px;
+    padding: 10px;
+    margin-top: 10px;
 }
 
 .item-list{
@@ -322,16 +336,21 @@ li{
     margin: 0;
     padding: 0;
 
-    font-size: 30px;
+    font-size: 20px;
+    /*text-align: center;*/
 }
 
 .item-list li{
     position: relative;
+    width: 95%;
+
+    border-radius: 2px;
     /*background: #e6e6e6;*/
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2), 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
     margin-bottom: 8px;
+    margin-left: 10px;
+    margin-right: 10px;
     cursor: move;
-
 }
 
 .item-list li.editing .view{
@@ -344,8 +363,8 @@ li{
 
 /*TODO */
 .toggle{
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     top: 0;
     bottom: 0;
 
@@ -387,6 +406,7 @@ li{
 .toggle0{
     /*display: none;*/
     content: url("../icon/circle_empty1.svg");
+    size: 15px;
     /*overflow: hidden;*/
     /*border-left: 10px solid transparent;*/
     /*border-right: 15px solid transparent;*/
@@ -474,8 +494,8 @@ li{
 
 
 .todo-label{
-    padding: 30px 60px 30px 15px;
-    margin-left: 80px;
+    padding: 15px 60px 15px 8px;
+    margin-left: 60px;
     /*margin-bottom: 30px;*/
     /*margin: 20px 0 20px 80px;*/
     color: #888888;
@@ -495,37 +515,36 @@ li{
 }
 
 /* Reference .destroy .css of TodoMVC */
-.delete{
-    display: none;
+.edit-button{
+    /*display: none;*/
     position: absolute;
-    margin: auto 0 25px;
+    margin: auto 10px 19px 0;
     padding: 0;
 
     top: 0;
     right: 10px;
     bottom: 0;
-    width: 40px;
-    height: 40px;
+    width: 22px;
+    height: 22px;
 
     font-size: 40px;
     color: #cc9a9a;
     transition: color 0.2s ease-out;
 
-    background: none;
+    background: url("../icon/edit.png") no-repeat;
     border: none;
     -webkit-appearance: none;
     outline: none;
+
+    cursor: pointer;
+
 }
 
-.delete:after {
-    content: '×';
+.edit-button:hover{
+    background: url("../icon/edit1.png") no-repeat;
 }
 
-.delete:hover{
-    color: firebrick;
-}
-
-.item-list li:hover .delete {
+.item-list li:hover .edit-button {
     display: block;
 }
 /* Reference .destroy .css of TodoMVC */
@@ -534,10 +553,10 @@ li{
 .toggle-all {
     z-index: 3;
     position: relative;
-    top: 55px;
-    left: -15px;
-    width: 60px;
-    height: 34px;
+    top: 36px;
+    left: -20px;
+    width: 16px;
+    height: 16px;
     text-align: center;
     border: none; /* Mobile Safari */
     outline: none;
@@ -554,8 +573,9 @@ label[for='toggle-all'] {
 
 .toggle-all:before {
     /*background-image: url("icon/all_down.svg");*/
+    /*content: ;*/
     content: url("../icon/all_down.svg");
-    font-size: 22px;
+    font-size: 14px;
     padding: 10px 27px 10px 27px;
 }
 

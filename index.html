@@ -5,7 +5,7 @@
     <title>TODO</title>
     <link href="css/style.css" rel="stylesheet">
     <script type="text/javascript" src="js/todo.js"></script>
-    <meta content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1" name="viewport"/>
+<!--    <meta content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1" name="viewport"/>-->
 </head>
 <body>
     <div class="container">
@@ -30,13 +30,13 @@
                         <a class="all selected">ALL</a>
                     </li>
                     <li>
-                        <a class="ongoing">ONGOING</a>
+                        <a class="on">ON</a>
                     </li>
                     <li>
                         <a class="completed">COMPLETED</a>
                     </li>
                 </ul>
-                <a class="clear-complete">CLEAR COMPLETED</a>
+                <a class="clear-complete">CLEAR</a>
             </div>
         </div>
 
@@ -45,7 +45,7 @@
             <input class="input-todo" type="text" placeholder=" ">
             <label class="input-label">
                 <span>
-                    What need to be done
+                    what need to be done
                 </span>
             </label>
 
@@ -62,7 +62,8 @@
                            <div class="view">
                                <input class="toggle" type="checkbox">
                                <label class="todo-label">TODO</label>
-                               <button class="delete"></button>
+                               <button class="edit-button"></button>
+                               <button class="delete" style="display: none"></button>
                            </div>
                         </li>
                     </ul>
