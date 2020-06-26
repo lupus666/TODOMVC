@@ -1,6 +1,6 @@
 # TODOMVC
 
-Author: 1751358 李澎生
+Author: 1751358 LeePaangSang
 
 Preview：http://49.235.158.28/
 
@@ -8,7 +8,7 @@ Preview：http://49.235.158.28/
 ### 基本功能
 
 - [x] 新增`Todo`
-- [x] 删除`Todo`（拖拽删除）
+- [x] 删除`Todo`(拖拽删除)
 - [x] 展现`Todo`列表
 - [x] 全部完成/取消
 - [x] 删除已完成
@@ -23,4 +23,4 @@ Preview：http://49.235.158.28/
 - [x] 按照`Deadline`的剩余天数改变颜色
 - [x] 拖拽单条`Todo`换位
 - [x] 拖拽整个`Deadline`分块换位
-- [x] 切换颜色主题
+- [x] 切换颜色主题（点击`logo`进行切换）

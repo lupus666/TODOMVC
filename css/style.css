@@ -29,12 +29,16 @@ li{
 }
 
 .todo-logo{
+    display: block;
+
     text-align: center;
 
     font-size: 40px;
     font-weight: bold;
     letter-spacing: 15px;
     color: #010101;
+
+    cursor: pointer;
 }
 
 .time-box{
@@ -43,13 +47,13 @@ li{
 }
 
 .change-style{
-    float: left;
+    float: right;
 
-    height: 48px;
-    width: 48px;
+    height: 24px;
+    width: 24px;
 
-    margin-top: 40px;
-    margin-left: 20px;
+    /*margin-top: 40px;*/
+    /*margin-left: 20px;*/
     padding: 0;
     background: url("../icon/style.png") no-repeat center;
     background-size: 100%;
@@ -137,14 +141,14 @@ li{
     list-style: none;
     margin: 0;
     padding: 0;
-    left: 100px;
-    right: 20px;
+    left: 0;
+    right: 0;
     position: absolute;
 }
 
 .tool-list li{
     display: inline;
-    /*margin: 0 5px;*/
+    margin: 0;
     cursor: pointer;
 }
 
@@ -152,7 +156,7 @@ li{
     border: 1px solid transparent;
     border-radius: 2px;
 
-    padding: 3px 7px;
+    padding: 2px 5px;
 }
 
 .tool-list a:hover{
@@ -538,7 +542,7 @@ li{
 
 /* Reference .destroy .css of TodoMVC */
 .edit-button{
-    /*display: none;*/
+    display: none;
     position: absolute;
     margin: auto 10px 19px 0;
     padding: 0;

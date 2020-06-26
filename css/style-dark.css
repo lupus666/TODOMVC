@@ -142,14 +142,14 @@ li{
     list-style: none;
     margin: 0;
     padding: 0;
-    left: 100px;
-    right: 20px;
+    left: 0;
+    right: 0;
     position: absolute;
 }
 
 .tool-list li{
     display: inline;
-    /*margin: 0 5px;*/
+    margin: 0;
     cursor: pointer;
 }
 
@@ -157,7 +157,7 @@ li{
     border: 1px solid transparent;
     border-radius: 2px;
 
-    padding: 3px 7px;
+    padding: 2px 5px;
 }
 
 .tool-list a:hover{
@@ -542,7 +542,7 @@ li{
 
 /* Reference .destroy .css of TodoMVC */
 .edit-button{
-    /*display: none;*/
+    display: none;
     position: absolute;
     margin: auto 10px 19px 0;
     padding: 0;

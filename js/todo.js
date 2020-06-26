@@ -21,7 +21,7 @@ function load() {
     updateTime();
     setInterval(updateTime, 1000);
 
-    $(".change-style").addEventListener("click", function () {
+    $(".todo-logo").addEventListener("click", function () {
         console.log("click");
         let link = document.head.querySelector("link");
         console.log(link);
