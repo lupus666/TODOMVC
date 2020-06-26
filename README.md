@@ -14,7 +14,7 @@ Preview：http://49.235.158.28/
 - [x] 删除已完成
 - [x] 保存页面状态，刷新页面后可恢复
 
-### 高级功能
+### 高级功能/亮点
 
 - [x] 过滤（`All`、`Ongoing`、`Completed`）
 - [x] 编辑单条`Todo`
@@ -24,3 +24,13 @@ Preview：http://49.235.158.28/
 - [x] 拖拽单条`Todo`换位
 - [x] 拖拽整个`Deadline`分块换位
 - [x] 切换颜色主题（点击`logo`进行切换）
+
+## 界面
+
+### PC
+
+![](img/ui.png)
+
+### MOBILE
+
+![](img/ui_mobile.png)
