@@ -784,6 +784,7 @@ TouchHandler = {
     },
     move: function(event) {
         event.stopPropagation();
+        event.preventDefault();
         if (drag){
             // console.log("move");
             let offsetX = event.touches[0].clientX - posX;
@@ -905,6 +906,7 @@ TouchHandler_box = {
     },
     move: function(event) {
         event.stopPropagation();
+        event.preventDefault();
         if (drag_box){
             // console.log("move");
             let offsetX = event.touches[0].clientX - posX;
