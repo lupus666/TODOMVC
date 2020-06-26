@@ -545,6 +545,8 @@ let originY;
 
 dragHandler = {
     start: function(event) {
+        event.stopPropagation();
+
         drag = true;
         posX = event.x;
         posy = event.y;
@@ -559,6 +561,7 @@ dragHandler = {
         this.addEventListener("mouseleave", dragHandler.end, false);
     },
     start_box: function(event) {
+        event.stopPropagation();
         drag = true;
         posX = event.x;
         posy = event.y;
@@ -573,6 +576,7 @@ dragHandler = {
         this.addEventListener("mouseleave", dragHandler.end_box, false);
     },
     move: function(event) {
+        event.stopPropagation();
         if (drag){
             // console.log(this);
             let offsetX = event.x - posX;
@@ -643,6 +647,7 @@ dragHandler = {
         }
     },
     move_box: function(event) {
+        event.stopPropagation();
         if (drag){
             // console.log(this);
             let offsetX = event.x - posX;
@@ -713,6 +718,7 @@ dragHandler = {
         }
     },
     end: function(event) {
+        event.stopPropagation();
         drag = false;
         this.style.zIndex = "2";
 
@@ -735,6 +741,7 @@ dragHandler = {
         }
     },
     end_box: function(event) {
+        event.stopPropagation();
         drag = false;
         this.style.zIndex = "2";
 
@@ -776,6 +783,7 @@ TouchHandler = {
         this.addEventListener("touchcancel", TouchHandler.end, false);
     },
     move: function(event) {
+        event.stopPropagation();
         if (drag){
             // console.log("move");
             let offsetX = event.touches[0].clientX - posX;
@@ -849,6 +857,7 @@ TouchHandler = {
         }
     },
     end: function(event) {
+        event.stopPropagation();
         console.log(event.type);
         drag = false;
         this.style.zIndex = "2";
@@ -895,6 +904,7 @@ TouchHandler_box = {
         this.addEventListener("touchcancel", TouchHandler_box.end, false);
     },
     move: function(event) {
+        event.stopPropagation();
         if (drag_box){
             // console.log("move");
             let offsetX = event.touches[0].clientX - posX;
@@ -965,6 +975,7 @@ TouchHandler_box = {
         }
     },
     end: function(event) {
+        event.stopPropagation();
         console.log(event.type);
         drag_box = false;
         this.style.zIndex = "2";
