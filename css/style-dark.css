@@ -135,6 +135,7 @@ li{
     text-align: left;
     /*font-size: 18px;*/
     font-weight: bold;
+
     margin-left: 10px;
 }
 
@@ -145,6 +146,7 @@ li{
     left: 0;
     right: 0;
     position: absolute;
+    background: none;
 }
 
 .tool-list li{

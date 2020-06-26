@@ -137,7 +137,12 @@ function addTodo(currentDate, text, completed=false) {
         template.classList.remove("none");
     }
 
-    template.addEventListener("touchstart", TouchHandler_box.start, false);
+    if (IsPC()){
+        template.addEventListener("mousedown", dragHandler.start_box, false);
+    } else {
+        template.addEventListener("touchstart", TouchHandler_box.start, false);
+    }
+
     let left = diff(currentDate) < 0 ? 0 : diff(currentDate);
     if (left <= 3){
         template.querySelector(".item-deadline").style.backgroundColor = color[left];
@@ -275,9 +280,11 @@ function addTodo(currentDate, text, completed=false) {
     });
 
 
-
-    // info.addEventListener("mousedown", dragHandler.start, false);
-    info.addEventListener("touchstart", TouchHandler.start, false);
+    if (IsPC()){
+        info.addEventListener("mousedown", dragHandler.start, false);
+    }else{
+        info.addEventListener("touchstart", TouchHandler.start, false);
+    }
 
 
     info.classList.remove("none");
@@ -509,6 +516,23 @@ function getPosY (element){
     return actualTop - elementScrollTop;
 }
 
+/* PC or mobile*/
+/**
+ * @return {boolean}
+ */
+function IsPC() {
+    let userAgentInfo = navigator.userAgent;
+    let Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+    let flag = true;
+    for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+            flag = false;
+            break;
+        }
+    }
+    return flag;
+}
+
 /* Drag Manager*/
 let posX;
 let posy;
@@ -533,6 +557,20 @@ dragHandler = {
         this.addEventListener("mousemove", dragHandler.move, false);
         this.addEventListener("mouseup", dragHandler.end, false);
         this.addEventListener("mouseleave", dragHandler.end, false);
+    },
+    start_box: function(event) {
+        drag = true;
+        posX = event.x;
+        posy = event.y;
+
+        originY = getPosY(this);
+
+        dragObj = this;
+        this.style.zIndex = "3";
+        // console.log(posX, posy);
+        this.addEventListener("mousemove", dragHandler.move_box, false);
+        this.addEventListener("mouseup", dragHandler.end_box, false);
+        this.addEventListener("mouseleave", dragHandler.end_box, false);
     },
     move: function(event) {
         if (drag){
@@ -604,6 +642,76 @@ dragHandler = {
             posy = event.y;
         }
     },
+    move_box: function(event) {
+        if (drag){
+            // console.log(this);
+            let offsetX = event.x - posX;
+            let offsetY = event.y - posy;
+            // console.log(this.left);
+            let left = parseFloat(this.style.left || 0) + offsetX;
+            let top = parseFloat(this.style.top || 0) + offsetY;
+
+            let eles = document.elementsFromPoint(event.x, event.y);
+            let diff = 0;
+            for(let x of eles){
+                if (x.classList.contains("box") && x !== dragObj){
+                    let newY = getPosY(x);
+                    if(newY + x.clientHeight / 2 <= event.y && newY > originY){
+                        diff = newY - originY;
+                        originY = newY;
+
+                        dragObj.parentNode.insertBefore(x, dragObj);
+
+                        /* Change in data */
+                        // let currentDate1 = x.parentNode.parentNode.parentNode.id;
+                        // let currentDate2 = dragObj.parentNode.parentNode.parentNode.id;
+                        // let index1 = findInParent(x.parentNode, x);
+                        // let index2 = findInParent(dragObj.parentNode, dragObj);
+                        // console.log(currentDate2, currentDate1, index2, index1);
+                        //
+                        // let msg = data[currentDate1][0][index1];
+                        // let completed = data[currentDate2][1][index1];
+                        //
+                        // data[currentDate1][0].splice(index1, 1);
+                        // data[currentDate1][1].splice(index1, 1);
+                        //
+                        // data[currentDate2][0].splice(index2, 0, msg);
+                        // data[currentDate2][1].splice(index2, 0, completed);
+
+                        break;
+                    }
+                    if(newY + x.clientHeight / 2 >= event.y && newY < originY){
+                        diff = newY - originY;
+                        originY = newY;
+
+                        dragObj.parentNode.insertBefore(dragObj, x);
+
+                        // let currentDate2 = x.parentNode.parentNode.parentNode.id;
+                        // let currentDate1 = dragObj.parentNode.parentNode.parentNode.id;
+                        // let index2 = findInParent(x.parentNode, x);
+                        // let index1 = findInParent(dragObj.parentNode, dragObj);
+                        // console.log(currentDate2, currentDate1, index2, index1);
+                        // let msg = data[currentDate1][0][index1];
+                        // let completed = data[currentDate2][1][index1];
+                        //
+                        // data[currentDate1][0].splice(index1, 1);
+                        // data[currentDate1][1].splice(index1, 1);
+                        //
+                        // data[currentDate2][0].splice(index2, 0, msg);
+                        // data[currentDate2][1].splice(index2, 0, completed);
+                        break;
+                    }
+                }
+            }
+            flush();
+
+            this.style.left = left + "px";
+            this.style.top = top - diff + "px";
+
+            posX = event.x;
+            posy = event.y;
+        }
+    },
     end: function(event) {
         drag = false;
         this.style.zIndex = "2";
@@ -619,6 +727,28 @@ dragHandler = {
                 inside = true;
             }
         }
+        if (inside){
+            this.style.top = "0";
+            this.style.left = "0";
+        }else{
+            this.querySelector(".delete").click();
+        }
+    },
+    end_box: function(event) {
+        drag = false;
+        this.style.zIndex = "2";
+
+        this.removeEventListener('mouseup', dragHandler.end, false);
+        this.removeEventListener('mousemove', dragHandler.move, false);
+        dragObj = null;
+
+        // let eles = document.elementsFromPoint(event.x, event.y);
+        let inside = true;
+        // for (let x of eles){
+        //     if (x.classList.contains("box")){
+        //         inside = true;
+        //     }
+        // }
         if (inside){
             this.style.top = "0";
             this.style.left = "0";
